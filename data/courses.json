@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "name": "Introduction to JavaScript",
+    "description": "Learn the basics of JavaScript programming.",
+    "targetCompletionDate": "2023-12-31",
+    "status": "Not Started"
+  }
+]
