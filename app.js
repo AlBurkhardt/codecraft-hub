@@ -28,8 +28,13 @@ app.use('/api', courseRoutes);
 
 // Start the server and begin listening for incoming requests.
 // The callback runs once the server is ready.
-app.listen(PORT, () => {
-  console.log('CodeCraftHub API is starting...');
-  console.log(`Data will be stored in: '${path.join(__dirname, 'data', 'courses.json')}'`);
-  console.log(`API is available at: 'http://localhost:${PORT}'`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log('CodeCraftHub API is starting...');
+    console.log(`Data will be stored in: '${path.join(__dirname, 'data', 'courses.json')}'`);
+    console.log(`API is available at: 'http://localhost:${PORT}'`);
+  });
+}
+
+// Export the Express app for use in tests.
+module.exports = app;

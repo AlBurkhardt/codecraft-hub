@@ -146,7 +146,7 @@ router.get('/courses', (req, res) => {
 });
 
 // Route: return statistics for all courses.
-router.get('/stats', (req, res) => {
+router.get('/courses/stats', (req, res) => {
   readCoursesFile((err, courses) => {
     if (err) {
       console.error('Read courses file failed:', err);

@@ -4,7 +4,8 @@
   "description": "Personal learning goal tracker API",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "jest --runInBand"
   },
   "repository": {
     "type": "git",
@@ -14,6 +15,16 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.2.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/?(*.)+(spec|test).[jt]s?(x)"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/AlBurkhardt/codecraft-hub/issues"
   },
