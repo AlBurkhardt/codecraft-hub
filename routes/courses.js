@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
     const courses = JSON.parse(data);
     newCourse.id = courses.length + 1; // Simple ID assignment
     courses.push(newCourse);
-    fs.writeFile(COURSES_FILE_PATH, JSON.stringify(courses, null, 2), (err) => {
+    fs.writeFilce(COURSES_FILE_PATH, JSON.stringify(courses, null, 2), (err) => {
       if (err) {
         return res.status(500).send('Error saving course');
       }
@@ -85,6 +85,7 @@ router.delete('/:id', (req, res) => {
     if (courseIndex === -1) {
       return res.status(404).send('Course not found');
     }
+    const course = courses[courseIndex]
     courses.splice(courseIndex, 1);
     fs.writeFile(COURSES_FILE_PATH, JSON.stringify(courses, null, 2), (err) => {
       if (err) {
