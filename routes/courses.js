@@ -134,7 +134,7 @@ function getNextCourseId(courses) {
 }
 
 // Route: return the full list of courses.
-router.get('/', (req, res) => {
+router.get('/courses', (req, res) => {
   readCoursesFile((err, courses) => {
     if (err) {
       console.error('Read courses file failed:', err);
@@ -145,8 +145,35 @@ router.get('/', (req, res) => {
   });
 });
 
+// Route: return statistics for all courses.
+router.get('/stats', (req, res) => {
+  readCoursesFile((err, courses) => {
+    if (err) {
+      console.error('Read courses file failed:', err);
+      return res.status(500).json({ error: 'Unable to read courses file.' });
+    }
+
+    const stats = {
+      totalCourses: courses.length,
+      statusCounts: {
+        'Not Started': 0,
+        'In Progress': 0,
+        'Completed': 0
+      }
+    };
+
+    courses.forEach((course) => {
+      if (ALLOWED_STATUS.includes(course.status)) {
+        stats.statusCounts[course.status] += 1;
+      }
+    });
+
+    res.json(stats);
+  });
+});
+
 // Route: return a single course by its numeric ID.
-router.get('/:id', (req, res) => {
+router.get('/courses/:id', (req, res) => {
   const courseId = parseInt(req.params.id, 10);
 
   readCoursesFile((err, courses) => {
@@ -165,7 +192,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Route: create a new course using values from the request body.
-router.post('/', (req, res) => {
+router.post('/courses', (req, res) => {
   const courseInput = req.body;
   const validationErrors = validateCourseInput(courseInput);
 
@@ -203,7 +230,7 @@ router.post('/', (req, res) => {
 
 // Route: update an existing course by ID.
 // Only provided fields are overwritten; existing values are kept.
-router.put('/:id', (req, res) => {
+router.put('/courses/:id', (req, res) => {
   const courseId = parseInt(req.params.id, 10);
   const updateInput = req.body;
   const validationErrors = validateCourseUpdateInput(updateInput);
@@ -245,7 +272,7 @@ router.put('/:id', (req, res) => {
 });
 
 // Route: delete a course by ID.
-router.delete('/:id', (req, res) => {
+router.delete('/courses/:id', (req, res) => {
   const courseId = parseInt(req.params.id, 10);
 
   readCoursesFile((err, courses) => {

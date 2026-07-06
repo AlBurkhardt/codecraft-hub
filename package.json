@@ -1,16 +1,16 @@
 {
   "name": "codecraft-hub",
   "version": "1.0.0",
-  "description": "��#\u0000 \u0000c\u0000o\u0000d\u0000e\u0000c\u0000r\u0000a\u0000f\u0000t\u0000-\u0000h\u0000u\u0000b\u0000\r\u0000 \u0000#\u0000 \u0000c\u0000o\u0000d\u0000e\u0000c\u0000r\u0000a\u0000f\u0000t\u0000-\u0000h\u0000u\u0000b\u0000\r\u0000 \u0000",
-  "main": "index.js",
+  "description": "Personal learning goal tracker API",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AlBurkhardt/codecraft-hub.git"
   },
-  "keywords": [],
+  "keywords": ["learning", "api", "rest", "express"],
   "author": "",
   "license": "ISC",
   "type": "commonjs",

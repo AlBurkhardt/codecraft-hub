@@ -24,10 +24,12 @@ const courseRoutes = require('./routes/courses');
 
 // Mount the course routes under `/api/courses`.
 // Example: `GET /api/courses` will be handled by `routes/courses.js`.
-app.use('/api/courses', courseRoutes);
+app.use('/api', courseRoutes);
 
 // Start the server and begin listening for incoming requests.
 // The callback runs once the server is ready.
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log('CodeCraftHub API is starting...');
+  console.log(`Data will be stored in: '${path.join(__dirname, 'data', 'courses.json')}'`);
+  console.log(`API is available at: 'http://localhost:${PORT}'`);
 });
