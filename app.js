@@ -14,6 +14,21 @@ const PORT = 5000;
 // This means `req.body` will contain parsed JSON for POST/PUT requests.
 app.use(express.json());
 
+// Middleware: enable CORS (Cross-Origin Resource Sharing).
+// This allows the frontend to make requests to the API from different origins.
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  
+  next();
+});
+
 // Serve static files from the `public` folder.
 // For example, `public/index.html` will be available at `/index.html`.
 app.use(express.static(path.join(__dirname, 'public')));
